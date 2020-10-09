@@ -4,18 +4,18 @@ p = require('path')
 module.exports =
   getProjectPath: ->
     ref = atom.project.getDirectories()
-    currentFile = p.dirname atom.workspace.getActiveTextEditor().getPath()
+    editor = atom.workspace.getActiveTextEditor()
     projectPath = ''
-    i = 0
-    len = ref.length;
-    console.log currentFile
-    while i < len
-      directory = ref[i];
-      console.log directory
-      if currentFile.includes directory.path
-          projectPath = directory.path;
-          i = len
-      i++
+    if editor
+      currentFile = p.dirname editor.getPath()
+      i = 0
+      len = ref.length;
+      while i < len
+        directory = ref[i];
+        if currentFile.includes directory.path
+            projectPath = directory.path;
+            i = len
+        i++
     path: projectPath
 
   build: (type, text, script) ->
@@ -59,7 +59,6 @@ module.exports =
   hemtt_build: (type, text, release, force) ->
     # Start notification
     startNotification = atom.notifications.addInfo ('HEMTT ' + text + ' Build Started'), dismissable: true, detail: 'Stand by ...'
-
     # Spawn build process and add Error notification handler
     parameters = ['build', '--ci']
     if release
@@ -99,7 +98,6 @@ module.exports =
     updateNotification = null
     info.buildProcess.stdout.on 'data', (data) ->
       alldata += data
-      updateNotification.dismissable()
       if updateNotification
         updateNotification.dismiss()
       updateNotification = atom.notifications.addInfo 'Development Build Progress', dismissable: true, detail: data

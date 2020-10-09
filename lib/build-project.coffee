@@ -23,7 +23,7 @@ module.exports =
     startNotification = atom.notifications.addInfo (text + ' Build Started'), dismissable: true, detail: 'Stand by ...'
 
     # Get Script Path
-    path = atom.config.get('language-arma-atom.build' + type + 'Script')
+    path = atom.config.get('language-arma-atom-continued.build' + type + 'Script')
     if /<current-project>/.test(path)
       path = @getProjectPath().path + '\\tools\\' + script
 

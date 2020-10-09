@@ -48,19 +48,19 @@ module.exports =
   activate: ->
     @subscriptions = new CompositeDisposable
     @subscriptions.add atom.commands.add 'atom-workspace',
-      'language-arma-atom:hemtt-build-release': => buildProject.hemtt_release()
+      'language-arma-atom-continued:hemtt-build-release': => buildProject.hemtt_release()
     @subscriptions.add atom.commands.add 'atom-workspace',
-      'language-arma-atom:hemtt-build-dev': => buildProject.hemtt_dev()
+      'language-arma-atom-continued:hemtt-build-dev': => buildProject.hemtt_dev()
     @subscriptions.add atom.commands.add 'atom-workspace',
-      'language-arma-atom:hemtt-build-release-force': => buildProject.hemtt_release_force()
+      'language-arma-atom-continued:hemtt-build-release-force': => buildProject.hemtt_release_force()
     @subscriptions.add atom.commands.add 'atom-workspace',
-      'language-arma-atom:hemtt-build-dev-force': => buildProject.hemtt_dev_force()
+      'language-arma-atom-continued:hemtt-build-dev-force': => buildProject.hemtt_dev_force()
     @subscriptions.add atom.commands.add 'atom-workspace',
-      'language-arma-atom:build-dev': => buildProject.dev()
+      'language-arma-atom-continued:build-dev': => buildProject.dev()
     @subscriptions.add atom.commands.add 'atom-workspace',
-      'language-arma-atom:build-release': => buildProject.release()
+      'language-arma-atom-continued:build-release': => buildProject.release()
     @subscriptions.add atom.commands.add 'atom-workspace',
-      'language-arma-atom:open-latest-RPT-file': => openLatestRptFile.open()
+      'language-arma-atom-continued:open-latest-RPT-file': => openLatestRptFile.open()
 
     # If package is updated, copy required autosuggest files
     copyNewer "language-sqf-native*", "#{__dirname}/snippets", {
@@ -71,9 +71,9 @@ module.exports =
     }
 
     # Copy optional autosuggest files
-    atom.config.observe 'language-arma-atom.autocomplete.includeCba', (checked) ->
+    atom.config.observe 'language-arma-atom-continued.autocomplete.includeCba', (checked) ->
       optionalAutocomplete.set('cba', checked)
-    atom.config.observe 'language-arma-atom.autocomplete.includeAce', (checked) ->
+    atom.config.observe 'language-arma-atom-continued.autocomplete.includeAce', (checked) ->
       optionalAutocomplete.set('ace', checked)
 
   deactivate: ->

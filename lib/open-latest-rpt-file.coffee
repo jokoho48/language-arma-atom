@@ -15,7 +15,7 @@ module.exports =
       .map (v) -> v.name)[0]
 
   open: ->
-    p = atom.config.get('language-arma-atom.appDataFolder').replace /%([^%]+)%/g, (_,n) -> process.env[n]
+    p = atom.config.get('language-arma-atom-continued.appDataFolder').replace /%([^%]+)%/g, (_,n) -> process.env[n]
     atom.workspace.open(@getLatestRptFile p).then (rptView) ->
       rptView.moveToBottom()
       rptView.getElement().scrollToBottom()

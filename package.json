@@ -1,6 +1,6 @@
 {
-  "name": "language-arma-atom",
-  "version": "2.14.0",
+  "name": "language-arma-atom-continued",
+  "version": "3.0.0",
   "description": "Syntax highlighting, auto-completions and snippets for sqf and other languages used within the Real Virtuality engine.",
   "keywords": [
     "sqf",
@@ -10,27 +10,27 @@
   ],
   "activationCommands": {
     "atom-workspace": [
-      "language-arma-atom:toggle",
-      "language-arma-atom:open-latest-RPT-file",
-      "language-arma-atom:build-dev",
-      "language-arma-atom:build-release"
+      "language-arma-atom-continued:toggle",
+      "language-arma-atom-continued:open-latest-RPT-file",
+      "language-arma-atom-continued:build-dev",
+      "language-arma-atom-continued:build-release"
     ]
   },
   "activationHooks": [
-    "language-arma-atom:grammar-used"
+    "language-arma-atom-continued:grammar-used"
   ],
   "license": "MIT",
   "engines": {
     "atom": ">=1.0.0 <2.0.0",
     "node": "*"
   },
-  "homepage": "https://github.com/acemod/language-arma-atom",
+  "homepage": "https://github.com/jokoho48/language-arma-atom-continued",
   "repository": {
     "type": "git",
-    "url": "https://github.com/acemod/language-arma-atom.git"
+    "url": "https://github.com/jokoho48/language-arma-atom-continued.git"
   },
   "bugs": {
-    "url": "https://github.com/acemod/language-arma-atom/issues"
+    "url": "https://github.com/jokoho48/language-arma-atom-continued/issues"
   },
   "dependencies": {
     "copy-newer": "^2.1.1"

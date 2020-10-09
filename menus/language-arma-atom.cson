@@ -5,6 +5,10 @@
     submenu: [
         { label: 'Build Dev', command: 'language-arma-atom:build-dev' },
         { label: 'Build Release', command: 'language-arma-atom:build-release' },
+        { label: 'HEMTT Build Dev', command: 'language-arma-atom:hemtt-build-dev-force' },
+        { label: 'HEMTT Build Release', command: 'language-arma-atom:hemtt-build-release-force' },
+        { label: 'HEMTT Build Dev Force', command: 'language-arma-atom:hemtt-build-dev-force' },
+        { label: 'HEMTT Build Release Force', command: 'language-arma-atom:hemtt-build-release-force' },
         { label: 'Open Latest RPT File', command: 'language-arma-atom:open-latest-RPT-file' },
     ]
   ]

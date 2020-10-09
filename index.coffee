@@ -48,6 +48,14 @@ module.exports =
   activate: ->
     @subscriptions = new CompositeDisposable
     @subscriptions.add atom.commands.add 'atom-workspace',
+      'language-arma-atom:hemtt-build-release': => buildProject.hemtt_release()
+    @subscriptions.add atom.commands.add 'atom-workspace',
+      'language-arma-atom:hemtt-build-dev': => buildProject.hemtt_dev()
+    @subscriptions.add atom.commands.add 'atom-workspace',
+      'language-arma-atom:hemtt-build-release-force': => buildProject.hemtt_release_force()
+    @subscriptions.add atom.commands.add 'atom-workspace',
+      'language-arma-atom:hemtt-build-dev-force': => buildProject.hemtt_dev_force()
+    @subscriptions.add atom.commands.add 'atom-workspace',
       'language-arma-atom:build-dev': => buildProject.dev()
     @subscriptions.add atom.commands.add 'atom-workspace',
       'language-arma-atom:build-release': => buildProject.release()

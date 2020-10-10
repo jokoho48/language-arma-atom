@@ -5,10 +5,11 @@
     submenu: [
         { label: 'Build Dev', command: 'language-arma-atom-continued:build-dev' },
         { label: 'Build Release', command: 'language-arma-atom-continued:build-release' },
-        { label: 'HEMTT Build Dev', command: 'language-arma-atom-continued:hemtt-build-dev-force' },
-        { label: 'HEMTT Build Release', command: 'language-arma-atom-continued:hemtt-build-release-force' },
+        { label: 'HEMTT Build Dev', command: 'language-arma-atom-continued:hemtt-build-dev' },
+        { label: 'HEMTT Build Release', command: 'language-arma-atom-continued:hemtt-build-release' },
         { label: 'HEMTT Build Dev Force', command: 'language-arma-atom-continued:hemtt-build-dev-force' },
         { label: 'HEMTT Build Release Force', command: 'language-arma-atom-continued:hemtt-build-release-force' },
+        { label: 'HEMTT File Patching', command: 'language-arma-atom-continued:hemtt-file-patching' },
         { label: 'Open Latest RPT File', command: 'language-arma-atom-continued:open-latest-RPT-file' },
     ]
   ]

@@ -48,6 +48,10 @@ module.exports =
   activate: ->
     @subscriptions = new CompositeDisposable
     @subscriptions.add atom.commands.add 'atom-workspace',
+      'language-arma-atom-continued:build-dev': => buildProject.dev()
+    @subscriptions.add atom.commands.add 'atom-workspace',
+      'language-arma-atom-continued:build-release': => buildProject.release()
+    @subscriptions.add atom.commands.add 'atom-workspace',
       'language-arma-atom-continued:hemtt-build-release': => buildProject.hemtt_release()
     @subscriptions.add atom.commands.add 'atom-workspace',
       'language-arma-atom-continued:hemtt-build-dev': => buildProject.hemtt_dev()
@@ -56,9 +60,7 @@ module.exports =
     @subscriptions.add atom.commands.add 'atom-workspace',
       'language-arma-atom-continued:hemtt-build-dev-force': => buildProject.hemtt_dev_force()
     @subscriptions.add atom.commands.add 'atom-workspace',
-      'language-arma-atom-continued:build-dev': => buildProject.dev()
-    @subscriptions.add atom.commands.add 'atom-workspace',
-      'language-arma-atom-continued:build-release': => buildProject.release()
+      'language-arma-atom-continued:hemtt-file-patching': => buildProject.hemtt_filepatching()
     @subscriptions.add atom.commands.add 'atom-workspace',
       'language-arma-atom-continued:open-latest-RPT-file': => openLatestRptFile.open()
 

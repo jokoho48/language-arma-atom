@@ -35,7 +35,7 @@ module.exports =
     startNotification: startNotification
 
   dev: ->
-    info = @build("Dev", "Development", "build.py")
+    info = @build('Dev', 'Development', 'build.py')
 
     # Add Success notification handler
     info.buildProcess.stdout.on 'data', (data) -> atom.notifications.addSuccess 'Development Build Passed', dismissable: true, detail: data
@@ -44,7 +44,7 @@ module.exports =
     info.buildProcess.stdout.on 'close', => info.startNotification.dismiss()
 
   release: ->
-    info = @build("Release", "Release", "make.py")
+    info = @build('Release', 'Release', 'make.py')
 
     # Add Info notification handler
     info.buildProcess.stdout.on 'data', (data) -> atom.notifications.addInfo 'Release Build Progress', dismissable: true, detail: data
@@ -72,12 +72,12 @@ module.exports =
     startNotification: startNotification
 
   hemtt_release: ->
-    info = @hemtt_build("Release", "Release", true, false)
-    alldata = "";
+    info = @hemtt_build('Release', 'Release', true, false)
+    outData = '';
     # Add Info notification handler
     updateNotification = null
     info.buildProcess.stdout.on 'data', (data) ->
-      alldata += data
+      outData += data
       if updateNotification
         updateNotification.dismiss()
       updateNotification = atom.notifications.addInfo 'Release Build Progress', dismissable: true, detail: data
@@ -86,18 +86,18 @@ module.exports =
     # Hide start notification, check output to determine if finished as make.py does not close automatically
     info.buildProcess.on 'exit', (err) ->
       info.startNotification.dismiss()
-      atom.notifications.addInfo 'Release Build Progress', dismissable: true, detail: alldata
+      atom.notifications.addInfo 'Release Build Progress', dismissable: true, detail: outData
       if !err
         # Display final Success notification as notificatons from make.py get splitted for some reason
         updateNotification = atom.notifications.addSuccess 'Release Build Passed', dismissable: true, detail: 'Release build finished successfully, refer to above progress/error notifications for more information.'
 
   hemtt_dev: ->
-    info = @hemtt_build("Dev", "Development", false, false)
-    alldata = "";
+    info = @hemtt_build('Dev', 'Development', false, false)
+    outData = '';
     # Add Info notification handler
     updateNotification = null
     info.buildProcess.stdout.on 'data', (data) ->
-      alldata += data
+      outData += data
       if updateNotification
         updateNotification.dismiss()
       updateNotification = atom.notifications.addInfo 'Development Build Progress', dismissable: true, detail: data
@@ -105,17 +105,17 @@ module.exports =
     # Hide start notification, check output to determine if finished as make.py does not close automatically
     info.buildProcess.on 'exit', (err) ->
       info.startNotification.dismiss()
-      atom.notifications.addInfo 'Release Build Progress', dismissable: true, detail: alldata
+      atom.notifications.addInfo 'Release Build Progress', dismissable: true, detail: outData
       if !err
         # Display final Success notification as notificatons from make.py get splitted for some reason
         atom.notifications.addSuccess 'Development Build Passed', dismissable: true, detail: 'Development build finished successfully, refer to above progress/error notifications for more information.'
 
   hemtt_release_force: ->
-    info = @hemtt_build("Release", "Release", true, true)
-    alldata = "";
+    info = @hemtt_build('Release', 'Release', true, true)
+    outData = '';
     # Add Info notification handler
     info.buildProcess.stdout.on 'data', (data) ->
-      alldata += data
+      outData += data
       if updateNotification
         updateNotification.dismiss()
       updateNotification = atom.notifications.addInfo 'Release Build Progress', dismissable: true, detail: data
@@ -123,17 +123,17 @@ module.exports =
     # Hide start notification, check output to determine if finished as make.py does not close automatically
     info.buildProcess.on 'exit', (err) ->
       info.startNotification.dismiss()
-      atom.notifications.addInfo 'Release Build Progress', dismissable: true, detail: alldata
+      atom.notifications.addInfo 'Release Build Progress', dismissable: true, detail: outData
       if !err
         # Display final Success notification as notificatons from make.py get splitted for some reason
         atom.notifications.addSuccess 'Release Build Passed', dismissable: true, detail: 'Release build finished successfully, refer to above progress/error notifications for more information.'
 
   hemtt_dev_force: ->
-    info = @hemtt_build("Dev", "Development", false, true)
-    alldata = "";
+    info = @hemtt_build('Dev', 'Development', false, true)
+    outData = '';
     # Add Info notification handler
     info.buildProcess.stdout.on 'data', (data) ->
-      alldata += data
+      outData += data
       if updateNotification
         updateNotification.dismiss()
       updateNotification = atom.notifications.addInfo 'Release Build Progress', dismissable: true, detail: data
@@ -141,7 +141,17 @@ module.exports =
     # Hide start notification, check output to determine if finished as make.py does not close automatically
     info.buildProcess.on 'exit', (err) ->
       info.startNotification.dismiss()
-      atom.notifications.addInfo 'Release Build Progress', dismissable: true, detail: alldata
+      atom.notifications.addInfo 'Release Build Progress', dismissable: true, detail: outData
       if !err
         # Display final Success notification as notificatons from make.py get splitted for some reason
         atom.notifications.addSuccess 'Development Build Passed', dismissable: true, detail: 'Development build finished successfully, refer to above progress/error notifications for more information.'
+  hemtt_filepatching: ->
+    linkProcess = spawn 'hemtt', ['file-patching'], {cwd: @getProjectPath().path}
+    outData = ''
+    linkProcess.stdout.on 'data', (data) ->
+      outData += data;
+    linkProcess.on 'exit', (err) ->
+      if !err
+        atom.notifications.addInfo 'Project Linked', dismissable: true, detail: outData
+      else
+        atom.notifications.addError 'Project not Linked', dismissable: true, detail: outData

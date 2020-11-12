@@ -58,13 +58,16 @@ module.exports =
 
   hemtt_build: (type, text, release, force) ->
     # Start notification
-    startNotification = atom.notifications.addInfo ('HEMTT ' + text + ' Build Started'), dismissable: true, detail: 'Stand by ...'
+    startNotification = atom.notifications.addInfo 'HEMTT ' + text + ' Build Started', dismissable: true, detail: 'Stand by ...'
     # Spawn build process and add Error notification handler
     parameters = ['build', '--ci']
     if release
       parameters.push '--release'
+      if force
+        parameters.push '--force-release'
     if force
       parameters.push '--force'
+
     buildProcess = spawn 'hemtt', parameters, {cwd: @getProjectPath().path}
     buildProcess.stderr.on 'data', (data) -> atom.notifications.addError (text + ' Build Error'), dismissable: true, detail: data
 
